@@ -2,7 +2,6 @@ package exercice_hello_universe;
 
 public class Planet {
 	String nom;
-	String matiere;
 	long diametre;
 	int totalVisiteurs=0;
 	int passager=0;
@@ -27,22 +26,9 @@ public class Planet {
 	}
 	
 	public String toString() {
-		return  nom + " est une planète " + matiere + " et a un diamètre de " + diametre + " kilomètres";
+		return  nom + " est une planète qui a un diamètre de " + diametre + " kilomètres";
 	}
 
-	void accueillirVaisseau(Vaisseau vaisseaux) {
-
-		if(vaisseauStock != null) {
-			System.out.println("Un vaisseau de type " + vaisseauStock.type + " doit s'en aller.");
-			vaisseauStock=vaisseaux;
-		}else {
-			vaisseauStock=vaisseaux;
-			System.out.println("Aucun vaisseau ne s'en va.");
-		}
-		totalVisiteurs+=vaisseaux.nbPassagers;
-	}
-	
-	
 	public String revolution(int angleRotation) {
 		int nbTourComplet = angleRotation/360;
 		return  "Je suis la planète " + nom + " et je fais " + nbTourComplet + " de tours complets autour de mon étoile";
