@@ -6,14 +6,17 @@ public class PlaneteTellurique extends Planet implements habitable{
 		super(nom);
 	}
 	
-	public void accueillirVaisseau(Vaisseau vaisseaux) {
+	public void accueillirVaisseau(Vaisseau vaisseau) {
+		if( vaisseau instanceof VaisseauDeGuerre) {
+			((VaisseauDeGuerre) vaisseau).desactiverArmes();
+		}
 		if(vaisseauStock != null) {
 			System.out.println("Un vaisseau de type " + vaisseauStock.type + " doit s'en aller.");
-			vaisseauStock=vaisseaux;
+			vaisseauStock=vaisseau;
 		}else {
-			vaisseauStock=vaisseaux;
+			vaisseauStock=vaisseau;
 			System.out.println("Aucun vaisseau ne s'en va.");
 		}
-		totalVisiteurs+=vaisseaux.nbPassagers;
+		totalVisiteurs+=vaisseau.nbPassagers;
 	}
 }

@@ -41,22 +41,22 @@ public class Hello_Universe {
 		
 		System.out.println("Mars est " + mars.forme);
 		System.out.println("Les planètes sont " + Planet.forme);
-		Vaisseau fregate = new Vaisseau();
+		Vaisseau fregate = new VaisseauDeGuerre();
 		fregate.nbPassagers=5;
 		fregate.type="Fregate";
 		mars.accueillirVaisseau(fregate);
 		
-		Vaisseau chasseur = new Vaisseau();
+		Vaisseau chasseur = new VaisseauDeGuerre();
 		chasseur.nbPassagers=3;
 		chasseur.type="Chasseur";
 		mars.accueillirVaisseau(chasseur);
 		
-		Vaisseau croiseur = new Vaisseau();
+		Vaisseau croiseur = new VaisseauDeGuerre();
 		croiseur.nbPassagers= 42;
 		croiseur.type="Croiseur";
 		mars.accueillirVaisseau(croiseur);
 		
-		Vaisseau EDM = new Vaisseau();
+		Vaisseau EDM = new VaisseauDeGuerre();
 		EDM.nbPassagers= 5000;
 		EDM.type="Etoile de la Mort";
 		mars.accueillirVaisseau(EDM);		
@@ -70,18 +70,15 @@ public class Hello_Universe {
 		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
 		
 		System.out.println(terre.toString());
+	
 		
-		Planet X = new Planet("X");
-		
-		System.out.println(X.toString());
-		
-		VaisseauDeGuerre chasseurGuerre = new VaisseauDeGuerre();
+		Vaisseau chasseurGuerre = new VaisseauDeGuerre();
 		chasseurGuerre.nbPassagers=100;
 		chasseurGuerre.type = "chasseur";
 		chasseurGuerre.blindage = 156;
 		chasseurGuerre.resistanceDuBouclier=2;
 		
-		VaisseauDeGuerre vaisseauMonde = new VaisseauDeGuerre();
+		Vaisseau vaisseauMonde = new VaisseauCivil();
 		vaisseauMonde.nbPassagers=300;
 		vaisseauMonde.type = "Vaisseau Monde";
 		vaisseauMonde.blindage = 4784;
@@ -89,7 +86,7 @@ public class Hello_Universe {
 		
 		vaisseauMonde.activerBouclier(vaisseauMonde);
 		chasseurGuerre.activerBouclier(chasseurGuerre);
-		chasseurGuerre.attaquer(vaisseauMonde, "laser phonique", 3);
+		((VaisseauDeGuerre)chasseurGuerre).attaquer(vaisseauMonde, "laser phonique", 3);
 		vaisseauMonde.desactiverBouclier(vaisseauMonde);
 		System.out.println("Le bouclier du " + vaisseauMonde.type + " est à " + vaisseauMonde.resistanceDuBouclier);
 		System.out.println("Le blindage du " + vaisseauMonde.type + " est à " + vaisseauMonde.blindage);

@@ -1,6 +1,6 @@
 package exercice_hello_universe;
 
-public class Planet {
+public abstract class Planet {
 	String nom;
 	long diametre;
 	int totalVisiteurs=0;
