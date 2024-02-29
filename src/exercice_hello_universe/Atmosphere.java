@@ -1,12 +1,12 @@
 package exercice_hello_universe;
 
 public class Atmosphere {
-	float txHydro;
-	float txMethane;
-	float txAzote;
-	float txHelium;
-	float txArgon;
-	float txCarbone;
-	float txSodium;
+	Float txHydro;
+	Float txMethane;
+	Float txAzote;
+	Float txHelium;
+	Float txArgon;
+	Float txCarbone;
+	Float txSodium;
 	
 }

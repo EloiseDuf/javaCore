@@ -2,6 +2,17 @@ package exercice_hello_universe;
 
 public class VaisseauDeGuerre extends Vaisseau{
 	
+	VaisseauDeGuerre(TypeVaisseau type) {
+		this.type=type;
+		if(type==TypeVaisseau.CHASSEUR){
+			this.tonnageMax=0;
+		}else if(type==TypeVaisseau.FREGATE) {
+			this.tonnageMax=50;
+		}else if(type==TypeVaisseau.CROISEUR) {
+			this.tonnageMax=100;
+		}
+	}
+
 	boolean armesDesactivees;
 
 	void attaquer(Vaisseau vaisseau, String arme, int dureeAttaque) {
@@ -26,16 +37,43 @@ public class VaisseauDeGuerre extends Vaisseau{
 	}
 	
 	public int emporterCargaison(int tonnage) {
-		if(this.type=="Chasseur") {
+//		System.out.println(this.type);
+//		if(this.type=="Chasseur") {
+//			return tonnage;
+//		} else if(nbPassagers>=12) {
+//			if(nbPassagers*2>tonnageMax) {
+//				tonnageActuel=tonnageActuel+(tonnage-tonnageMax<=0?tonnage:tonnageMax);
+//				return (tonnage-tonnageMax<=0?0:tonnage-tonnageMax);
+//			} else {
+//				tonnageActuel+=tonnage;
+//				return (nbPassagers*2)-tonnage;
+//			}
+//		} else {
+//			return tonnage;
+//		}
+		
+		// tonnageActuel = 0
+		// nbPassager = 15
+		//tonnageMax = 50
+		int tonnagePassager = nbPassagers*2;
+		int tonnageRestant = tonnageMax - tonnageActuel;
+		int cargaisonAConsiderer = (tonnagePassager<tonnageRestant ? tonnagePassager : tonnageRestant);
+		
+		if(this.type==TypeVaisseau.CHASSEUR) {
 			return tonnage;
-		} else if(nbPassagers>=12) {
-			if(nbPassagers*2>tonnageMax) {
-				return tonnage-tonnageMax;
+		}else {
+			if(tonnage > cargaisonAConsiderer) {
+				tonnageActuel = tonnageMax;
+
+				return tonnage - cargaisonAConsiderer;
 			} else {
-				return tonnage-(nbPassagers*2);
+				tonnageActuel = tonnageActuel + tonnage;
+				return 0;
+				
 			}
-		} else {
-			return tonnage;
+			
 		}
+	
+		
 	}
 }

@@ -1,4 +1,7 @@
 package exercice_hello_universe;
+
+import java.util.Scanner;
+
 public class Hello_Universe {
 	public static void main(String... args){
 		PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
@@ -14,87 +17,169 @@ public class Hello_Universe {
 		PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
 		neptune.diametre=49532;
 		
+		PlaneteTellurique venus= new PlaneteTellurique("Venus",0);
+		
 		System.out.println(neptune.toString());
 		System.out.println(neptune.revolution(-3542));
 		
 		PlaneteGazeuse uranus = new PlaneteGazeuse("Uranus");
 		uranus.diametre=51118;
-		uranus.atmosphere = new Atmosphere();
-		uranus.atmosphere.txHydro=0.83f;
-		uranus.atmosphere.txHelium=0.15f;
-		uranus.atmosphere.txMethane=0.025f;
+		Atmosphere atmosphereUranus=new Atmosphere();
+		atmosphereUranus.txHydro=new Float(0.83);
+		atmosphereUranus.txHelium=new Float(0.15);
+		atmosphereUranus.txMethane=new Float(0.025);
+		atmosphereUranus.txAzote=new Float(0.0);
+		uranus.atmosphere=atmosphereUranus;
 		
-		System.out.println("L'atmosphère de " + uranus.nom + " est composée de " + (int)(uranus.atmosphere.txHydro*100) + " %");
+		
+		System.out.println("L'atmosphère de " + uranus.nom + " est composée de : ");
+		
+		if(uranus.atmosphere.txHydro!=null) {
+			System.out.println((int)(atmosphereUranus.txHydro*100) + " % d'hydrogène");
+		}
+		
+		if(uranus.atmosphere.txHelium!=null) {
+			System.out.println((int)(atmosphereUranus.txHelium*100) + " % d'hélium");
+		}
+		
+		if(uranus.atmosphere.txMethane!=null) {
+			System.out.println((int)(atmosphereUranus.txMethane*100) + " % de Métane");
+		}
+		
+		if(uranus.atmosphere.txAzote!=null) {
+			System.out.println((int)(atmosphereUranus.txAzote*100) + " % d'Azote");
+		}
 		
 		System.out.println(uranus.toString());
 		
 		
-		PlaneteTellurique mercure = new PlaneteTellurique("Mercure");
+		PlaneteTellurique mercure = new PlaneteTellurique("Mercure",1);
 		mercure.diametre=4880;
 		
 		System.out.println(mercure.toString());
 		
-		PlaneteTellurique mars = new PlaneteTellurique("Mars");
+		PlaneteTellurique mars = new PlaneteTellurique("Mars",3);
 		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
 		mars.diametre=6792;
 		Planet.expension(14.2);
 		
 		System.out.println("Mars est " + mars.forme);
 		System.out.println("Les planètes sont " + Planet.forme);
-		Vaisseau fregate = new VaisseauDeGuerre();
-		fregate.nbPassagers=5;
-		fregate.type="Fregate";
+		Vaisseau fregate = new VaisseauDeGuerre(TypeVaisseau.FREGATE);
+		fregate.nbPassagers=100;
+		System.out.println(fregate.type);
+		
+		
 		mars.accueillirVaisseau(fregate);
 		
-		Vaisseau chasseur = new VaisseauDeGuerre();
+		Vaisseau chasseur = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
 		chasseur.nbPassagers=3;
-		chasseur.type="Chasseur";
+		chasseur.nbPassagers=100;
+		chasseur.blindage = 156;
+		chasseur.resistanceDuBouclier=2;
 		mars.accueillirVaisseau(chasseur);
 		
-		Vaisseau croiseur = new VaisseauDeGuerre();
+		Vaisseau croiseur = new VaisseauDeGuerre(TypeVaisseau.CROISEUR);
 		croiseur.nbPassagers= 42;
-		croiseur.type="Croiseur";
 		mars.accueillirVaisseau(croiseur);
 		
-		Vaisseau EDM = new VaisseauDeGuerre();
-		EDM.nbPassagers= 5000;
-		EDM.type="Etoile de la Mort";
-		mars.accueillirVaisseau(EDM);		
-	
+		Vaisseau cargo = new VaisseauCivil(TypeVaisseau.CARGO);
+		cargo.nbPassagers=30;
+			
 		System.out.println(mars.toString());
 		System.out.println(mars.rotation(-684));
 		System.out.println("total visiteur " + mars.totalVisiteurs);
 	
-		PlaneteTellurique terre = new PlaneteTellurique("Terre");
+		PlaneteTellurique terre = new PlaneteTellurique("Terre",3);
 		terre.diametre=12756;
 		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
 		
 		System.out.println(terre.toString());
 	
+	
 		
-		Vaisseau chasseurGuerre = new VaisseauDeGuerre();
-		chasseurGuerre.nbPassagers=100;
-		chasseurGuerre.type = "chasseur";
-		chasseurGuerre.blindage = 156;
-		chasseurGuerre.resistanceDuBouclier=2;
-		
-		Vaisseau vaisseauMonde = new VaisseauCivil();
+		Vaisseau vaisseauMonde = new VaisseauCivil(TypeVaisseau.VAISSEAUMONDE);
 		vaisseauMonde.nbPassagers=300;
-		vaisseauMonde.type = "Vaisseau Monde";
 		vaisseauMonde.blindage = 4784;
 		vaisseauMonde.resistanceDuBouclier =30;
 		
 		vaisseauMonde.activerBouclier(vaisseauMonde);
-		chasseurGuerre.activerBouclier(chasseurGuerre);
-		((VaisseauDeGuerre)chasseurGuerre).attaquer(vaisseauMonde, "laser phonique", 3);
+		chasseur.activerBouclier(chasseur);
+		((VaisseauDeGuerre)chasseur).attaquer(vaisseauMonde, "laser phonique", 3);
 		vaisseauMonde.desactiverBouclier(vaisseauMonde);
 		System.out.println("Le bouclier du " + vaisseauMonde.type + " est à " + vaisseauMonde.resistanceDuBouclier);
 		System.out.println("Le blindage du " + vaisseauMonde.type + " est à " + vaisseauMonde.blindage);
 		
 		mars.accueillirVaisseau(vaisseauMonde);
-		mars.accueillirVaisseau(chasseurGuerre);
+		mars.accueillirVaisseau(chasseur);
 		
 		System.out.println("total visiteur " + mars.totalVisiteurs);
+		
+		System.out.println(chasseur.emporterCargaison(20));
+//		System.out.println(fregate.emporterCargaison(45));
+//		System.out.println(fregate.emporterCargaison(20));
+		System.out.println(vaisseauMonde.emporterCargaison(1560));
+		System.out.println(vaisseauMonde.emporterCargaison(600));
+
+		String choixReplay="oui";
+		
+		do {
+		
+			System.out.println("Quel type de vaisseau souhaites tu prendre entre Chasseur, Fregate, Croiseur, Cargo et Vaisseau Monde ?");
+			Scanner sc = new Scanner(System.in);
+			String choixVaisseau = sc.nextLine();
+			System.out.println("Sur quelle planète souhaites tu poser le vaisseau " + choixVaisseau + " ?");
+			String choixPlanete = sc.nextLine();
+			System.out.println("Tu as un chargement à prendre avec ton vaisseau " + choixVaisseau + " en direction de " + choixPlanete + ", quel est son poids (en tonnes) ?");
+			int choixTonnage = sc.nextInt();
+			sc.nextLine();			
+			TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(choixVaisseau);
+			
+			Vaisseau vaisseau=null;
+			switch (typeVaisseau) {
+				case CHASSEUR: 
+					vaisseau = chasseur;
+					break;
+				case FREGATE:
+					vaisseau = fregate;
+					break;
+				case CROISEUR:
+					vaisseau = croiseur;
+					break;
+				case CARGO:
+					vaisseau = cargo;
+					break;
+				case VAISSEAUMONDE:
+					vaisseau = vaisseauMonde;
+					break;
+			}
+			
+			PlaneteTellurique planete=null;
+			switch(choixPlanete) {
+				case "Terre":
+					planete=terre;
+					break;
+				case "Mars":
+					planete=mars;
+				case "Mercure":
+					planete=mercure;
+					break;
+				case "Venus" :
+					planete=venus;
+					break;
+			}
+			
+			planete.accueillirVaisseau(vaisseau);
+			
+			int rejet =vaisseau.emporterCargaison(choixTonnage);
+			
+			System.out.println(rejet + " tonnes de cargaison ont été rejetées");
+			
+			System.out.println("Voulez vous poser de nouveau un vaisseau ? (oui/non)");
+			choixReplay = sc.nextLine();
+			
+		} while(choixReplay.equalsIgnoreCase("oui"));
+		
 	}
 }
 

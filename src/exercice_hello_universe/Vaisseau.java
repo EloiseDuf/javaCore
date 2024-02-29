@@ -7,28 +7,7 @@ public abstract class Vaisseau {
 	int tonnage;
 	int tonnageMax;
 	int tonnageActuel;
-	String type;
-	
-	Vaisseau(){
-		
-		switch(this.type) {
-		case "Chasseur":
-			this.tonnageMax=0;
-			break;
-		case "Fregate":
-			this.tonnageMax=50;
-			break;
-		case "Croiseur":
-			this.tonnageMax=100;
-			break;
-		case "Cargo":
-			this.tonnageMax=500;
-			break;
-		case "Vaisseau Monde":
-			this.tonnageMax=2000;
-			break;
-		}
-	}
+	TypeVaisseau type;
 	
 	
 	void activerBouclier(Vaisseau vaisseau) {
