@@ -2,36 +2,62 @@ package exercice_hello_universe;
 
 public class PlaneteTellurique extends Planet implements habitable{
 
-	Vaisseau[] nbVaisseauAccoste;
+	Vaisseau[][] baieAccostage;
+	//baieAccostage[1][VaisseauMonde]
+	//				[1][Cargo]
+	//				[0][chasseur]
 	PlaneteTellurique(String nom, int nbPlaces) {
 		super(nom);
-		nbVaisseauAccoste = new Vaisseau[nbPlaces];
+		this.baieAccostage = new Vaisseau[nbPlaces][nbPlaces];
 		
 	}
 	
-	public void accueillirVaisseau(Vaisseau vaisseau) {
-		if( vaisseau instanceof VaisseauDeGuerre) {
-			((VaisseauDeGuerre) vaisseau).desactiverArmes();
-		}
-		if(restePlaceDisponible()) {
-			for(int i=0;i<this.nbVaisseauAccoste.length;i++) {
-				if(this.nbVaisseauAccoste[i] == null) {
-					nbVaisseauAccoste[i]=vaisseau;
-					break;
-				}
+	public void accueillirVaisseaux(Vaisseau... vaisseaux) {
+		for(int i=0;i<vaisseaux.length;i++) {
+			
+			int indexZone=0;
+			
+			switch(vaisseaux[i].type) {
+				case CARGO :
+				case VAISSEAUMONDE:
+					indexZone=1;
 			}
-		}else {
-			System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
+			
+			if( vaisseaux[i] instanceof VaisseauDeGuerre) {
+				((VaisseauDeGuerre) vaisseaux[i]).desactiverArmes();
+			}
+			if(restePlaceDisponible(vaisseaux[i])) {
+				for(int index=0;index<this.baieAccostage[indexZone].length;index++) {
+					if(this.baieAccostage[indexZone][index] == null) {
+						baieAccostage[indexZone][index]=vaisseaux[i];
+						break;
+					}
+				}
+			}else {
+				System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
+			}
+			totalVisiteurs+=vaisseaux[i].nbPassagers;
 		}
-		totalVisiteurs+=vaisseau.nbPassagers;
+		System.out.println("La planète " + this.nom + " a accueilli " + vaisseaux.length);
 	}
 	
-	public boolean restePlaceDisponible () {
-		for(int i=0;i<this.nbVaisseauAccoste.length;i++) {
-			if(this.nbVaisseauAccoste[i] == null) {
+
+	public boolean restePlaceDisponible (Vaisseau vaisseau) {
+		
+		int indexZone=0;
+		
+		switch(vaisseau.type) {
+			case CARGO :
+			case VAISSEAUMONDE:
+				indexZone=1;
+		}
+		
+		for(int i=0;i<this.baieAccostage[indexZone].length;i++) {
+			if(this.baieAccostage[indexZone][i] == null) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 }
