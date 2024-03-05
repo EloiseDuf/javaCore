@@ -1,9 +1,11 @@
 package exercice_hello_universe;
 
 import java.util.Scanner;
+import java.util.Set;
 
 public class Hello_Universe {
 	public static void main(String... args){
+
 		PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
 		jupiter.diametre=142984;
 		
@@ -31,6 +33,37 @@ public class Hello_Universe {
 		atmosphereUranus.txAzote=new Float(0.0);
 		uranus.atmosphere=atmosphereUranus;
 		
+		PlaneteTellurique terre = new PlaneteTellurique("Terre",30);
+		terre.diametre=12756;
+//		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
+		
+//		System.out.println(terre.toString());
+		
+		
+		PlaneteTellurique mercure = new PlaneteTellurique("Mercure",1);
+		mercure.diametre=4880;
+		
+		//System.out.println(mercure.toString());
+		
+		PlaneteTellurique mars = new PlaneteTellurique("Mars",3);
+//		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
+		mars.diametre=6792;
+		Planet.expension(14.2);
+		
+//		System.out.println("Mars est " + mars.forme);
+//		System.out.println("Les planètes sont " + Planet.forme);
+		
+		Galaxie systemeSolaire = new Galaxie();
+		systemeSolaire.nom="Système solaire";
+		systemeSolaire.listPlanetes.add(mercure);
+		systemeSolaire.listPlanetes.add(venus);
+		systemeSolaire.listPlanetes.add(terre);
+		systemeSolaire.listPlanetes.add(mars);
+		systemeSolaire.listPlanetes.add(jupiter);
+		systemeSolaire.listPlanetes.add(saturne);
+		systemeSolaire.listPlanetes.add(uranus);
+		systemeSolaire.listPlanetes.add(neptune);
+		
 		
 		//System.out.println("L'atmosphère de " + uranus.nom + " est composée de : ");
 		
@@ -52,19 +85,6 @@ public class Hello_Universe {
 //		
 //		System.out.println(uranus.toString());
 		
-		
-		PlaneteTellurique mercure = new PlaneteTellurique("Mercure",1);
-		mercure.diametre=4880;
-		
-		//System.out.println(mercure.toString());
-		
-		PlaneteTellurique mars = new PlaneteTellurique("Mars",3);
-//		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
-		mars.diametre=6792;
-		Planet.expension(14.2);
-		
-//		System.out.println("Mars est " + mars.forme);
-//		System.out.println("Les planètes sont " + Planet.forme);
 		Vaisseau fregate = new VaisseauDeGuerre(TypeVaisseau.FREGATE);
 		fregate.nbPassagers=100;
 //		System.out.println(fregate.type);
@@ -90,11 +110,7 @@ public class Hello_Universe {
 //		System.out.println(mars.rotation(-684));
 //		System.out.println("total visiteur " + mars.totalVisiteurs);
 	
-		PlaneteTellurique terre = new PlaneteTellurique("Terre",30);
-		terre.diametre=12756;
-//		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
 		
-//		System.out.println(terre.toString());
 		
 		Vaisseau chasseur1 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
 		chasseur1.nbPassagers=100;
@@ -142,12 +158,13 @@ public class Hello_Universe {
 			System.out.println("Quel type de vaisseau souhaites tu prendre entre Chasseur, Fregate, Croiseur, Cargo et Vaisseau Monde ?");
 			Scanner sc = new Scanner(System.in);
 			String choixVaisseau = sc.nextLine();
-			System.out.println("Sur quelle planète souhaites tu poser le vaisseau " + choixVaisseau + " ?");
+			System.out.println("Sur quelle planète souhaites tu poser le vaisseau, merci d'indiquer le nombre de la position par rapport au soleil (de 0 à 8) " + choixVaisseau + " ?");
 			String choixPlanete = sc.nextLine();
+			
 			System.out.println("Tu as un chargement à prendre avec ton vaisseau " + choixVaisseau + " en direction de " + choixPlanete + ", quel est son poids (en tonnes) ?");
 			int choixTonnage = sc.nextInt();
 			sc.nextLine();			
-			TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(choixVaisseau);
+			TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(choixVaisseau.toUpperCase());
 			
 			Vaisseau vaisseau=null;
 			switch (typeVaisseau) {
@@ -168,29 +185,29 @@ public class Hello_Universe {
 					break;
 			}
 			
-			PlaneteTellurique planete=null;
-			switch(choixPlanete) {
-				case "Terre":
-					planete=terre;
-					break;
-				case "Mars":
-					planete=mars;
-				case "Mercure":
-					planete=mercure;
-					break;
-				case "Venus" :
-					planete=venus;
-					break;
+			for (Planet planete : systemeSolaire.listPlanetes) {
+				
+				if(planete.nom.equalsIgnoreCase(choixPlanete)) {
+					
+					if(planete instanceof PlaneteGazeuse) {
+						System.out.println("Il n'est pas possible de se poser sur une planète gazeuse");
+						continue;
+					}
+					
+					PlaneteTellurique planeteT = (PlaneteTellurique)planete;
+					
+					planeteT.accueillirVaisseaux(vaisseau);
+					break;			
+				}
 			}
-			
-			planete.accueillirVaisseaux(vaisseau);
 			
 			int rejet =vaisseau.emporterCargaison(choixTonnage);
 			
 			System.out.println(rejet + " tonnes de cargaison ont été rejetées");
-			
 			System.out.println("Voulez vous poser de nouveau un vaisseau ? (oui/non)");
 			choixReplay = sc.nextLine();
+			
+			
 			
 		} while(choixReplay.equalsIgnoreCase("oui"));
 		

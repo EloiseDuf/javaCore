@@ -38,7 +38,7 @@ public class PlaneteTellurique extends Planet implements habitable{
 			}
 			totalVisiteurs+=vaisseaux[i].nbPassagers;
 		}
-		System.out.println("La planète " + this.nom + " a accueilli " + vaisseaux.length);
+		System.out.println("La planète " + this.nom + " a accueilli " + vaisseaux.length + " vaisseau(x)");
 	}
 	
 

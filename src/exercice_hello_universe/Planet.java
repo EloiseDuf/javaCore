@@ -26,7 +26,7 @@ public abstract class Planet {
 	}
 	
 	public String toString() {
-		return  nom + " est une planète qui a un diamètre de " + diametre + " kilomètres";
+		return  nom + " est une planète qui a un diamètre de " + diametre + " kilomètres  \n";
 	}
 
 	public String revolution(int angleRotation) {
