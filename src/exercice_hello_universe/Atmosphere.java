@@ -1,12 +1,9 @@
 package exercice_hello_universe;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Atmosphere {
-	Float txHydro;
-	Float txMethane;
-	Float txAzote;
-	Float txHelium;
-	Float txArgon;
-	Float txCarbone;
-	Float txSodium;
+	Map<String,Float> constituants = new HashMap<String,Float>();
 	
 }

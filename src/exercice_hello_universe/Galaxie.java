@@ -1,9 +1,10 @@
 package exercice_hello_universe;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Galaxie {
  String nom;
- Set<Planet> listPlanetes =new HashSet<Planet>();
+ Set<Planet> listPlanetes =new TreeSet<Planet>();
+
 }

@@ -1,53 +1,61 @@
 package exercice_hello_universe;
 
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
+
 
 public class Hello_Universe {
 	public static void main(String... args){
 
 		PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
 		jupiter.diametre=142984;
+		jupiter.distanceEtoile=778.3f;
 		
 		//System.out.println(jupiter.toString());
 		
 		PlaneteGazeuse saturne = new PlaneteGazeuse("Saturne");
 		saturne.diametre=120536;
+		saturne.distanceEtoile=1427.0f;
 		
 		//System.out.println(saturne.toString());
 		
 		PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
 		neptune.diametre=49532;
+		neptune.distanceEtoile=4497.07f;
 		
 		PlaneteTellurique venus= new PlaneteTellurique("Venus",0);
-		
+		venus.distanceEtoile = 108.2f; 
 //		System.out.println(neptune.toString());
 //		System.out.println(neptune.revolution(-3542));
 		
 		PlaneteGazeuse uranus = new PlaneteGazeuse("Uranus");
 		uranus.diametre=51118;
+		uranus.distanceEtoile=2877.38f;
 		Atmosphere atmosphereUranus=new Atmosphere();
-		atmosphereUranus.txHydro=new Float(0.83);
-		atmosphereUranus.txHelium=new Float(0.15);
-		atmosphereUranus.txMethane=new Float(0.025);
-		atmosphereUranus.txAzote=new Float(0.0);
+		atmosphereUranus.constituants.put("Hydrogène",0.93f);
+		atmosphereUranus.constituants.put("Hélium",0.15f);
+		atmosphereUranus.constituants.put("Méthane",0.025f);
 		uranus.atmosphere=atmosphereUranus;
+		
+		System.out.println("L'atmosphère d'Uranus est composé de :");
+		
+		for(Map.Entry<String,Float> entry: atmosphereUranus.constituants.entrySet()) {
+			String key = entry.getKey();
+			Float value = entry.getValue();
+			System.out.println(Math.round(value*100) + " % de " + key );
+		}
 		
 		PlaneteTellurique terre = new PlaneteTellurique("Terre",30);
 		terre.diametre=12756;
-//		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
-		
-//		System.out.println(terre.toString());
-		
+		terre.distanceEtoile=149.6f;
 		
 		PlaneteTellurique mercure = new PlaneteTellurique("Mercure",1);
 		mercure.diametre=4880;
-		
-		//System.out.println(mercure.toString());
-		
+		mercure.distanceEtoile=57.9f;
+				
 		PlaneteTellurique mars = new PlaneteTellurique("Mars",3);
-//		System.out.println("Le nombre de planètes découvertes est " + Planet.nbPlanetesDecouvertes);
 		mars.diametre=6792;
+		mars.distanceEtoile=227.9f;
 		Planet.expension(14.2);
 		
 //		System.out.println("Mars est " + mars.forme);
@@ -55,15 +63,27 @@ public class Hello_Universe {
 		
 		Galaxie systemeSolaire = new Galaxie();
 		systemeSolaire.nom="Système solaire";
-		systemeSolaire.listPlanetes.add(mercure);
+		systemeSolaire.listPlanetes.add(saturne);
 		systemeSolaire.listPlanetes.add(venus);
 		systemeSolaire.listPlanetes.add(terre);
-		systemeSolaire.listPlanetes.add(mars);
-		systemeSolaire.listPlanetes.add(jupiter);
-		systemeSolaire.listPlanetes.add(saturne);
 		systemeSolaire.listPlanetes.add(uranus);
+		systemeSolaire.listPlanetes.add(mars);
+		systemeSolaire.listPlanetes.add(mercure);
+		systemeSolaire.listPlanetes.add(jupiter);
 		systemeSolaire.listPlanetes.add(neptune);
 		
+		System.out.println("------------------------------------------");
+		
+		System.out.println("Le " + systemeSolaire.nom + " est composée de : ");
+				
+		for(Planet planet : systemeSolaire.listPlanetes) {
+			System.out.println(planet.nom);
+		}
+		System.out.println("------------------------------------------");
+		
+		//System.out.println("Le " + systemeSolaire.nom + " est composé des planètes suivantes (de la plus proche à la plus éloignée du soleil) : ");
+		
+		//for (Planet planete : setPlanete)
 		
 		//System.out.println("L'atmosphère de " + uranus.nom + " est composée de : ");
 		

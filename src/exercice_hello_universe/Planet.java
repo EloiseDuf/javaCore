@@ -1,10 +1,11 @@
 package exercice_hello_universe;
 
-public abstract class Planet {
+public abstract class Planet implements Comparable<Object>{
 	String nom;
 	long diametre;
 	int totalVisiteurs=0;
 	int passager=0;
+	float distanceEtoile;
 	Vaisseau vaisseauStock;
 	static String forme = "spherique";
 	Atmosphere atmosphere;
@@ -38,7 +39,12 @@ public abstract class Planet {
 		return  "Je suis la planète " + nom + " et je fais " + nbTourComplet + " de tours complets sur moi-même";
 	}
 	
-	
+	public int compareTo (Object o) {
+		Planet autrePlanet = (Planet) o;
+		if(distanceEtoile==autrePlanet.distanceEtoile) return 0;
+		if(distanceEtoile>autrePlanet.distanceEtoile) return 1;
+		return -1;
+	}
 	
 	
 	
