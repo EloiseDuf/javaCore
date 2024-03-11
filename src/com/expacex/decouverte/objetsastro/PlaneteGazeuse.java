@@ -1,4 +1,4 @@
-package exercice_hello_universe;
+package com.expacex.decouverte.objetsastro;
 
 public class PlaneteGazeuse extends Planet {
 

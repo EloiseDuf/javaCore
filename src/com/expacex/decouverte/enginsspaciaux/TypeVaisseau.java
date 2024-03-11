@@ -1,4 +1,4 @@
-package exercice_hello_universe;
+package com.expacex.decouverte.enginsspaciaux;
 
 public enum TypeVaisseau {
 	CHASSEUR("Chasseur"),

@@ -1,7 +1,22 @@
-package exercice_hello_universe;
+package com.expacex.decouverte;
 
 import java.util.Map;
 import java.util.Scanner;
+
+import com.expacex.decouverte.enginsspaciaux.TypeVaisseau;
+import static com.expacex.decouverte.enginsspaciaux.TypeVaisseau.CARGO;
+import static com.expacex.decouverte.enginsspaciaux.TypeVaisseau.FREGATE;
+import static com.expacex.decouverte.enginsspaciaux.TypeVaisseau.VAISSEAUMONDE;
+import static com.expacex.decouverte.enginsspaciaux.TypeVaisseau.CROISEUR;
+import static com.expacex.decouverte.enginsspaciaux.TypeVaisseau.CHASSEUR;
+import com.expacex.decouverte.enginsspaciaux.Vaisseau;
+import com.expacex.decouverte.enginsspaciaux.VaisseauCivil;
+import com.expacex.decouverte.enginsspaciaux.VaisseauDeGuerre;
+import com.expacex.decouverte.objetsastro.Atmosphere;
+import com.expacex.decouverte.objetsastro.Galaxie;
+import com.expacex.decouverte.objetsastro.Planet;
+import com.expacex.decouverte.objetsastro.PlaneteGazeuse;
+import com.expacex.decouverte.objetsastro.PlaneteTellurique;
 
 
 public class Hello_Universe {
@@ -105,25 +120,25 @@ public class Hello_Universe {
 //		
 //		System.out.println(uranus.toString());
 		
-		Vaisseau fregate = new VaisseauDeGuerre(TypeVaisseau.FREGATE);
+		Vaisseau fregate = new VaisseauDeGuerre(FREGATE);
 		fregate.nbPassagers=100;
 //		System.out.println(fregate.type);
 		
 		
 		mars.accueillirVaisseaux(fregate);
 		
-		Vaisseau chasseur = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+		Vaisseau chasseur = new VaisseauDeGuerre(CHASSEUR);
 		chasseur.nbPassagers=3;
 		chasseur.nbPassagers=100;
 		chasseur.blindage = 156;
 		chasseur.resistanceDuBouclier=2;
 		mars.accueillirVaisseaux(chasseur);
 		
-		Vaisseau croiseur = new VaisseauDeGuerre(TypeVaisseau.CROISEUR);
+		Vaisseau croiseur = new VaisseauDeGuerre(CROISEUR);
 		croiseur.nbPassagers= 42;
 		mars.accueillirVaisseaux(croiseur);
 		
-		Vaisseau cargo = new VaisseauCivil(TypeVaisseau.CARGO);
+		Vaisseau cargo = new VaisseauCivil(CARGO);
 		cargo.nbPassagers=30;
 			
 //		System.out.println(mars.toString());
@@ -132,15 +147,15 @@ public class Hello_Universe {
 	
 		
 		
-		Vaisseau chasseur1 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+		Vaisseau chasseur1 = new VaisseauDeGuerre(CHASSEUR);
 		chasseur1.nbPassagers=100;
 		chasseur1.blindage = 156;
 		chasseur1.resistanceDuBouclier=2;
-		Vaisseau chasseur2 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+		Vaisseau chasseur2 = new VaisseauDeGuerre(CHASSEUR);
 		chasseur2.nbPassagers=120;
 		chasseur2.blindage = 100;
 		chasseur2.resistanceDuBouclier=5;
-		Vaisseau cargo1 = new VaisseauCivil(TypeVaisseau.CARGO);
+		Vaisseau cargo1 = new VaisseauCivil(CARGO);
 		cargo1.nbPassagers=500;
 		cargo1.blindage = 200;
 		cargo1.resistanceDuBouclier=10;
@@ -148,7 +163,7 @@ public class Hello_Universe {
 	
 	
 		
-		Vaisseau vaisseauMonde = new VaisseauCivil(TypeVaisseau.VAISSEAUMONDE);
+		Vaisseau vaisseauMonde = new VaisseauCivil(VAISSEAUMONDE);
 		vaisseauMonde.nbPassagers=300;
 		vaisseauMonde.blindage = 4784;
 		vaisseauMonde.resistanceDuBouclier =30;

@@ -1,24 +1,26 @@
-package exercice_hello_universe;
+package com.expacex.decouverte.objetsastro;
+
+import com.expacex.decouverte.enginsspaciaux.Vaisseau;
 
 public abstract class Planet implements Comparable<Object>{
-	String nom;
-	long diametre;
-	int totalVisiteurs=0;
+	public String nom;
+	public long diametre;
+	public int totalVisiteurs=0;
 	int passager=0;
-	float distanceEtoile;
+	public float distanceEtoile;
 	Vaisseau vaisseauStock;
 	static String forme = "spherique";
-	Atmosphere atmosphere;
+	public Atmosphere atmosphere;
 	static int nbPlanetesDecouvertes=0;
 	
 	
-	Planet(String nom){
+	public Planet(String nom){
 		this.nom=nom;
 		nbPlanetesDecouvertes++;
 	}
 	
 	
-	static void expension(double distance) {
+	static public void expension(double distance) {
 		if(distance<14) {
 			System.out.println("Oh la la mais c'est super rapide !");
 		} else {
@@ -30,11 +32,11 @@ public abstract class Planet implements Comparable<Object>{
 		return  nom + " est une planète qui a un diamètre de " + diametre + " kilomètres  \n";
 	}
 
-	public String revolution(int angleRotation) {
+	final protected String revolution(int angleRotation) {
 		int nbTourComplet = angleRotation/360;
 		return  "Je suis la planète " + nom + " et je fais " + nbTourComplet + " de tours complets autour de mon étoile";
 	}
-	public String rotation(int angleRotation) {
+	final protected String rotation(int angleRotation) {
 		int nbTourComplet = angleRotation/360;
 		return  "Je suis la planète " + nom + " et je fais " + nbTourComplet + " de tours complets sur moi-même";
 	}

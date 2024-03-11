@@ -1,8 +1,8 @@
-package exercice_hello_universe;
+package com.expacex.decouverte.enginsspaciaux;
 
 public class VaisseauCivil extends Vaisseau {
-	VaisseauCivil(TypeVaisseau type) {
-		this.type=type;
+	public VaisseauCivil(TypeVaisseau type) {
+		super(type);
 			if(type==TypeVaisseau.CARGO){
 				this.tonnageMax=500;
 			}else if(type==TypeVaisseau.VAISSEAUMONDE) {

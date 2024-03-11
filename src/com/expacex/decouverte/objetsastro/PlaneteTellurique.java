@@ -1,4 +1,7 @@
-package exercice_hello_universe;
+package com.expacex.decouverte.objetsastro;
+
+import com.expacex.decouverte.enginsspaciaux.Vaisseau;
+import com.expacex.decouverte.enginsspaciaux.VaisseauDeGuerre;
 
 public class PlaneteTellurique extends Planet implements habitable{
 
@@ -6,7 +9,7 @@ public class PlaneteTellurique extends Planet implements habitable{
 	//baieAccostage[1][VaisseauMonde]
 	//				[1][Cargo]
 	//				[0][chasseur]
-	PlaneteTellurique(String nom, int nbPlaces) {
+	public PlaneteTellurique(String nom, int nbPlaces) {
 		super(nom);
 		this.baieAccostage = new Vaisseau[nbPlaces][nbPlaces];
 		
